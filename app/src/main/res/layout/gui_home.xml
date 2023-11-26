@@ -19,6 +19,6 @@
         android:gravity="center"
         android:text="MANAGER STUDENT"
         android:textColor="#0092DC"
-        android:textSize="60sp"
+        android:textSize="48sp"
         android:textStyle="bold" />
 </LinearLayout>

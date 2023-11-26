@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -58,12 +60,12 @@ public class Activity_Main extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //tao su kien khi nhan menu item.
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //Mở APP mặc định vào Home Fragment
+        //Log In APP mặc định vào Home Fragment
         replaceFragment(new Fragment_Home());
         navigationView.getMenu().findItem(R.id.menu_nav_Home).setChecked(true);
+
+        //tao su kien khi nhan menu item.
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
@@ -92,6 +94,11 @@ public class Activity_Main extends AppCompatActivity implements NavigationView.O
 
         if (id == R.id.menu_nav_Khoa) {
             Intent intent = new Intent(this, KhoaActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.menu_nav_Dangxuat) {
+            Intent intent = new Intent(this, BUS_Login.class);
             startActivity(intent);
         }
 
