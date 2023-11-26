@@ -58,7 +58,7 @@ public class Activity_Main extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        //tao su kien khi nhan menu item: home, info, score
+        //tao su kien khi nhan menu item.
         navigationView.setNavigationItemSelectedListener(this);
 
         //Mở APP mặc định vào Home Fragment

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class L_BUS_Diem extends AppCompatActivity implements AdapterView.OnItemS
     private TextView tvMssvTen, tvDiem1, tvDiem2, tvDiem3, tvKhoa, tvSoLuongSV;
     private EditText edtDiem1, edtDiem2, edtDiem3;
     private Button btnSave, btnClear, btnBack;
+    Spinner spHocKy;
 
     private LinearLayout layoutDiem;
 
@@ -47,6 +49,7 @@ public class L_BUS_Diem extends AppCompatActivity implements AdapterView.OnItemS
         setControls();
         setEvents();
     }
+
 
     private void setEvents() {
         layoutDiem.setVisibility(View.INVISIBLE);
@@ -151,6 +154,13 @@ public class L_BUS_Diem extends AppCompatActivity implements AdapterView.OnItemS
         btnBack = findViewById(R.id.d_btnBack);
         btnSave = findViewById(R.id.d_btnSave);
         btnClear = findViewById(R.id.d_btnClear);
+
+//Spinner
+        spHocKy = findViewById(R.id.d_spHocKy);
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.HocKy, android.R.layout.select_dialog_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.select_dialog_item);
+        spHocKy.setAdapter(adapterSpinner);
+        spHocKy.setOnItemSelectedListener(this);
     }
 
 
@@ -162,22 +172,25 @@ public class L_BUS_Diem extends AppCompatActivity implements AdapterView.OnItemS
         tvMssvTen.setText(sv.get_MSSV() + "\n" + sv.get_Ten());
         tvKhoa.setText(sv.get_Khoa());
 
+        String hocKy = "";
+        hocKy += String.valueOf(spHocKy.getSelectedItemPosition()+1);
+
         if (sv.get_Khoa().equals("CNTT")) {
-            tvDiem1.setText("Java");
-            tvDiem2.setText("LTDD");
-            tvDiem3.setText("OOP");
+            tvDiem1.setText("Java "+hocKy);
+            tvDiem2.setText("LTDD "+hocKy);
+            tvDiem3.setText("OOP "+hocKy);
         }
 
         if (sv.get_Khoa().equals("DO HOA")) {
-            tvDiem1.setText("PS");
-            tvDiem2.setText("Vẽ");
-            tvDiem3.setText("Paint");
+            tvDiem1.setText("PS "+hocKy);
+            tvDiem2.setText("Vẽ "+hocKy);
+            tvDiem3.setText("Ảnh "+hocKy);
         }
 
         if (sv.get_Khoa().equals("DIEN TU")) {
-            tvDiem1.setText("Điện 1");
-            tvDiem2.setText("Điện 2");
-            tvDiem3.setText("QPAN");
+            tvDiem1.setText("Điện "+hocKy);
+            tvDiem2.setText("Từ "+hocKy);
+            tvDiem3.setText("AMP "+hocKy);
         }
 
         edtDiem1.setText(diem.get_Diem1());
@@ -189,12 +202,12 @@ public class L_BUS_Diem extends AppCompatActivity implements AdapterView.OnItemS
     //
     private int FindItem(String MSSV) {
         for (int i = 0; i < dsDiem.size(); i++) {
-            if (dsDiem.get(i).get_mssv().toString().equals(MSSV) == true)
-                return i;
+            if (dsDiem.get(i).get_mssv().toString().equals(MSSV) == true) return i;
         }
         return -1;
     }
 
+    //Spinner adapter
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
