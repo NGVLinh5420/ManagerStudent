@@ -110,7 +110,6 @@ public class Activity_Main extends AppCompatActivity implements NavigationView.O
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_layout_replace, fragment);
         fragmentTransaction.commit();
-
     }
 
 //    private void defaultMenuSelect() {

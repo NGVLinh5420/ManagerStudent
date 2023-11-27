@@ -32,12 +32,11 @@ DBAccount dbAccount = new DBAccount(this, null, null, 1);
                 dbAccount.addAccount(edtUser.getText().toString().trim(), edtPassword.getText().toString().trim());
                 if (dbAccount.getListAccount().size() > 0) {
                     if(edtPassword.getText().toString().trim().equals(edtConfirmPassword.getText().toString().trim())){
-                        Intent inte = new Intent(BUS_SignUp.this, BUS_Login.class);
-                        startActivity(inte);
+                        Intent intent = new Intent(BUS_SignUp.this, BUS_Login.class);
+                        startActivity(intent);
                         Toast.makeText(BUS_SignUp.this, "dang ki thanh cong", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(BUS_SignUp.this,"mat khau khong trung nhau" , Toast.LENGTH_SHORT).show();
-
                     }
                 }
 
@@ -49,7 +48,6 @@ DBAccount dbAccount = new DBAccount(this, null, null, 1);
                 edtUser.getText().clear();
                 edtPassword.getText().clear();
                 edtConfirmPassword.getText().clear();
-
             }
         });
     }
